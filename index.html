@@ -5,26 +5,37 @@
 	<title>Document</title>
 </head>
 <body>
+
 	<script>
+		
+		// create instance of AJAX object	
+		var request = new XMLHttpRequest();
+		
+		// Open url (no connection on low level actually)
+		request.open('GET', 'http://localhost:8000', true);
 
-	var request = new XMLHttpRequest();
-	request.open('GET', 'http://www.bolha.com/vse-kategorije', true);
+		// this is callback. When data is retrieved, we get it
+		request.onload = function() {
+		  
+		  if (request.status >= 200 && request.status < 400) {
+		    
+		    // Success. We now grab text of the response 
+		    var resp = request.responseText;
 
-	request.onload = function() {
-	  if (request.status >= 200 && request.status < 400) {
-	    // Success!
-	    var resp = request.responseText;
-	  } else {
-	    // We reached our target server, but it returned an error
+		  } else {
 
-	  }
-	};
+		    	// We reached our target server, but it returned an error status
 
-	request.onerror = function(err) {
-	  	console.log(err);
-	};
+		  }
+		};
 
-	request.send();
+		// if server ended prematurely, or connection was interrupted, or network error
+		request.onerror = function(err) {
+		  	console.log(err);
+		};
+
+		// this really connects
+		request.send();
 
 	</script>
 </body>
