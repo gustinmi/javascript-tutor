@@ -6,16 +6,20 @@
 </head>
 <body>
 
+	TO JE HTML STRAN
+
 	<script>
 		
 		// create instance of AJAX object	
 		var request = new XMLHttpRequest();
 		
 		// Open url (no connection on low level actually)
-		request.open('GET', 'http://localhost:8000', true);
+		request.open('GET', 'http://localhost:8000/mesta', true);
 
 		// this is callback. When data is retrieved, we get it
 		request.onload = function() {
+
+		  debugger;	// ko zaključi node in pošlje odgovor
 		  
 		  if (request.status >= 200 && request.status < 400) {
 		    
@@ -36,6 +40,8 @@
 
 		// this really connects
 		request.send();
+
+		debugger; // ko se pošlje
 
 	</script>
 </body>
