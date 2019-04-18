@@ -112,8 +112,8 @@
 
 					// vzemi ven sveže podatke
 					let jsonTransferData = {
-						"id" : $("#idMesto").text(),
-						"ime" : $("#txtIme").text() 
+						"id" : $("#idMesto").text(), // LABELA ima text     text()
+						"ime" : $("#txtIme").val()  // inpuit ima pa value val()
 					};
 
 					// pripravi za pošiljanje
