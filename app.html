@@ -80,7 +80,7 @@
         		<input type="text" id="txtIme" value="Ljubljana TEST 123">
         	</div>
         	<div>
-        		<button>Shrani</button>
+        		<button id="btnShrani">Shrani</button>
         	</div>
 
 
@@ -88,6 +88,57 @@
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">
+
+    	$(function(){
+
+    		$('table tbody tr').on('click', function(){
+
+    			// ko si v jQuery event handlerju
+    			// ti THIS ti vrne ta element kot DOM element  tr.innerHTML
+    			// $(this) ti pa vrne to kot jQuery element    .html(), .val()
+
+    			let clickedElement = this;
+
+    			// $(IŠČI, OD KJE NAPREJ).VZEMI VSEBINO
+    			let id = $('td:nth-child(1)', this).text();
+    			let ime = $('td:nth-child(2)', this).text();
+
+    			// $(IŠČI). ZAMENJAJ VSEBINO
+				$("#idMesto").text(id);
+				$("#txtIme").val(ime);	
+
+				// čakaj na klik shrani
+				$("#btnShrani").on("click", function(){
+
+					// vzemi ven sveže podatke
+					let jsonTransferData = {
+						"id" : $("#idMesto").text(),
+						"ime" : $("#txtIme").text() 
+					};
+
+					// pripravi za pošiljanje
+					let forServer = JSON.stringify(jsonTransferData);
+
+					$.ajax({
+				        url:"http://localhost:8000/mesta", // URL
+				        method: "PUT",                     // HTTP metoda
+				        data: jsonTransferData,            // podatek
+				        success : function(response) {       // callback
+				        }
+				    });
+
+
+				});
+
+
+		 				
+
+    		});
+
+
+    	}); // start aplikacije / vse je nalozeno in izris1o
+
+
     </script>
 </body>
 
