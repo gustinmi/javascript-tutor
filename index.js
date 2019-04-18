@@ -14,6 +14,15 @@ http.createServer(function(req, response) { // when client connects, execute thi
         debugger;
         response.writeHead(200, { 'Content-Type': 'text/html' });
 
+    }  else if (req.url == "/app.html") { // app.html
+        debugger;
+
+        // read local file synchronous
+        vsebina = fs.readFileSync('app.html');
+
+        // write headers
+        response.writeHead(200, { 'Content-Type': 'text/html' });
+
     } else if (req.url == "/index.html") { // index.html
         debugger;
 
